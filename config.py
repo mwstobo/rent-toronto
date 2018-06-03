@@ -28,4 +28,5 @@ def _validate_presence(value):
 def validate() -> None:
     """Validate the current config options"""
     _validate_presence(GOOGLE_GEO_API_KEY)
+    _validate_presence(FROM_ADDRESS)
     _validate_presence(TO_ADDRESSES)
