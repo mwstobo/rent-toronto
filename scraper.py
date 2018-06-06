@@ -134,7 +134,11 @@ async def parse_advert(
     """Return an Advert from a Kijiji advert page"""
     soup = bs4.BeautifulSoup(html, "html.parser")
 
-    title: str = soup.find("h1", {"class": TITLE_REGEX}).get_text()
+    try:
+        title: str = soup.find("h1", {"class": TITLE_REGEX}).get_text()
+    except AttributeError:
+        logging.error("No title found at %s", url)
+        return None
 
     try:
         address: str = soup.find("span", {"itemprop": "address"}).get_text()
