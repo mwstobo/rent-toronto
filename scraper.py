@@ -85,7 +85,7 @@ def parse_advert_urls(html: bytes) -> List[str]:
     """Return a list of advert URLs from a Kijiji list page"""
     urls: List[str] = []
     soup = bs4.BeautifulSoup(html, "html.parser")
-    adverts = soup.findAll("div", {"data-ad-id": AD_ID_REGEX})
+    adverts = soup.findAll("div", {"data-listing-id": AD_ID_REGEX})
     for advert in adverts:
         if SPONSORED_CLASS in advert["class"]:
             continue
